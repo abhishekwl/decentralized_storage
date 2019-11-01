@@ -18,7 +18,7 @@ exports.authenticate = (request, response) => {
 
 exports.updateUser = (request, response) => {
     const updateBody = request.body;
-    User.findByIdAndUpdate(request.params._id, { $set: request.body }, { new: true }, (err, data) => respond(err, data, request, response));
+    User.findByIdAndUpdate(request.params._id, { $set: updateBody }, { new: true }, (err, data) => respond(err, data, request, response));
 };
 
 exports.deleteUser = (request, response) => User.findByIdAndRemove(request.params._id, (err, data) => respond(err, data, request, response));
