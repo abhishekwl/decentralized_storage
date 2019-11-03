@@ -11,6 +11,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 require('./routes/user.routes')(app);
+require('./routes/post.routes')(app);
 app.listen(process.env.PORT, '0.0.0.0', () => {
     console.log('[SERVER] Listening on port '+process.env.PORT);
     mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
