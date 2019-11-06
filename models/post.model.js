@@ -7,9 +7,10 @@ const postSchema = mongoose.Schema({
     description: String,
     name: String,
     hash: String,
-    type: String,
+    type: { type: String, enum: ['POST', 'VIDEO', 'IMAGE'] },
     size: Number,
-    likes: [String]
+    likes: [String],
+    private: Boolean
 }, { timestamps: true });
 
 module.exports = mongoose.model('post', postSchema);
