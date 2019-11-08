@@ -13,7 +13,7 @@ exports.getUser = (request, response) => User.findById(request.params._id, (err,
 exports.authenticate = (request, response) => {
     const email = request.body.email;
     const password = request.body.password;
-    User.find({ email: email, password: password }, (err, data) => respond(err, data, request, response));
+    User.findOne({ email: email, password: password }, (err, data) => respond(err, data, request, response));
 };
 
 exports.updateUser = (request, response) => {
