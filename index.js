@@ -4,8 +4,22 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const xss = require('xss-clean');
+const mongoSanitize = require('express-mongo-sanitize');
+
+
+const limit = rateLimit({
+    max: 100,// max requests
+    windowMs: 60 * 60 * 1000, // 1 Hour of 'ban' / lockout 
+    message: 'Too many requests' // message to send
+});
 
 const app = express();
+app.use(limit());
+app.use(mongoSanitize());
+app.use(xss());
+app.use(express.json({ limit: '10kb' }));
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(morgan('dev'));
