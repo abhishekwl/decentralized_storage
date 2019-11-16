@@ -16,7 +16,7 @@ const limit = rateLimit({
 });
 
 const app = express();
-app.use(limit());
+app.use(limit);
 app.use(mongoSanitize());
 app.use(xss());
 app.use(express.json({ limit: '10kb' }));
